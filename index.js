@@ -26,6 +26,8 @@ for (var i = 0; i < array.length; i++) {
 
         handleClick(this.innerHTML);
 
+        buttonAnimation(this.innerHTML);
+
         // Daha kısa bir yol ise
         // Dosya isimleri ile buton isimlerini aynı olarak değiştirip aşağıdaki gibi kullanmak.
         // Ama şu an buna çok erindiğim için bu şekilde kullanmayacağım :)))
@@ -43,6 +45,8 @@ document.addEventListener('keydown', function (event) {
     // Bu property bize klavyeden basılan tuşun ismini verir.
 
     handleClick(event.key);
+    
+    buttonAnimation(event.key);
 });
 
 // Aynı şeyleri tekrar tek tek yazmak yerine fonksiyonlar oluşturup
@@ -84,6 +88,35 @@ function handleClick(eventName) {
 
 }
 
+// Butona basıldığında veya klavyeden tuşa basıldığında 
+// Butonun yanıp sönmesi için bir animasyon fonksiyon yazalım.
+
+function buttonAnimation(currentKey) {
+    // Butonun yanıp sönmesi için öncelikle hangi butonun yanıp sönmesi gerektiğini
+    // Bulmamız gerekiyor. Bunun için de butonların class'larını kullanacağız. 
+    // Ve 'currentKey' parametresi ile gelen değer ile butonların class'larını karşılaştıracağız.
+    var activeButton = document.querySelector('.' + currentKey);
+
+    // Daha sonra CSS dosyasında tanımladığımız 'pressed' class'ını butona ekleyeceğiz.
+    // Böylece hangi butona basıldığını anlayacağız.
+
+    activeButton.classList.add('pressed');
+
+    // Bu kısımda ise butonun yanıp sönmesi için bir süre tanımlayacağız.
+    // Bu süre içerisinde butonun yanıp sönmesi için bir fonksiyon yazacağız.
+    // Bu fonksiyonun içinde ise 'pressed' class'ını butondan kaldıracağız.
+    // Böylece butonun yanıp sönmesi duracaktır.
+
+    // setTimeout() fonksiyonu bir fonksiyonu belirli bir süre sonra çalıştırmamızı sağlar.
+
+    setTimeout(
+        function () {
+            activeButton.classList.remove('pressed');
+        },
+        100
+    );
+
+}
 
 //***********************************************/
 
