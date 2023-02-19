@@ -62,6 +62,11 @@ In this repository, I will create basic Drum-Kit using HTML, CSS and JavaScript.
 
 
   - [x] Project Setup
+  - [x] JS: Add Event Listeners
+  - [x] JS: Play Sound
+  - [x] JS: Create a Object for Sounds
+  - [x] JS: Switch-Case Condition
+
 
 
   
