@@ -13,6 +13,8 @@
 
 // document.querySelector('button').addEventListener('click', handleClick);
 
+
+
 var array = document.querySelectorAll('.drum');
 
 for (var i = 0; i < array.length; i++) {
@@ -22,68 +24,7 @@ for (var i = 0; i < array.length; i++) {
         //? BU KISIMDA ANONIM FONKSİYON KULLANILDIĞINDA BU FONKSİYONUN İÇİNDEKİ this
         //? O AN KULLANILAN ELEMENTİN İFADE ETTİĞİNİ GÖSTERİR. 
 
-        // if (this.innerHTML == 'w') {
-        //     var audio = new Audio('sounds/tom-1.mp3');
-        //     audio.play();
-        // } else if (this.innerHTML == 'a') {
-        //     var audio = new Audio('sounds/tom-2.mp3');
-        //     audio.play();
-        // }
-        // else if (this.innerHTML == 's') {
-        //     var audio = new Audio('sounds/tom-3.mp3');
-        //     audio.play();
-        // }
-        // else if (this.innerHTML == 'd') {
-        //     var audio = new Audio('sounds/tom-4.mp3');
-        //     audio.play();
-        // }
-        // else if (this.innerHTML == 'j') {
-        //     var audio = new Audio('sounds/snare.mp3');
-        //     audio.play();
-        // }
-        // else if (this.innerHTML == 'k') {
-        //     var audio = new Audio('sounds/crash.mp3');
-        //     audio.play();
-        // }
-        // else if (this.innerHTML == 'l') {
-        //     var audio = new Audio('sounds/kick-bass.mp3');
-        //     audio.play();
-        // }
-
-        // Ve uzun bir if else yapısı yerine switch case yapısı kullanılabilir.
-
-        switch (this.innerHTML) {
-            case 'w':
-                var audio = new Audio('sounds/tom-1.mp3');
-                audio.play();
-                break;
-            case 'a':
-                var audio = new Audio('sounds/tom-2.mp3');
-                audio.play();
-                break;
-            case 's':
-                var audio = new Audio('sounds/tom-3.mp3');
-                audio.play();
-                break;
-            case 'd':
-                var audio = new Audio('sounds/tom-4.mp3');
-                audio.play();
-                break;
-            case 'j':
-                var audio = new Audio('sounds/snare.mp3');
-                audio.play();
-                break;
-            case 'k':
-                var audio = new Audio('sounds/crash.mp3');
-                audio.play();
-                break;
-            case 'l':
-                var audio = new Audio('sounds/kick-bass.mp3');
-                audio.play();
-                break;
-            default:
-                break;
-        }
+        handleClick(this.innerHTML);
 
         // Daha kısa bir yol ise
         // Dosya isimleri ile buton isimlerini aynı olarak değiştirip aşağıdaki gibi kullanmak.
@@ -93,6 +34,58 @@ for (var i = 0; i < array.length; i++) {
 
     });
 }
+
+// Bu kısımda ise klavyeden tuşa basıldığında o tuşa ait sesin çalması için
+// keydown eventini dinleyeceğiz.
+document.addEventListener('keydown', function (event) {
+    // 'event' parametresi bize bir obje döndürür.
+    // Bu objenin içinde key isimli bir property var.
+    // Bu property bize klavyeden basılan tuşun ismini verir.
+
+    handleClick(event.key);
+});
+
+// Aynı şeyleri tekrar tek tek yazmak yerine fonksiyonlar oluşturup
+// Bu fonksiyonları çağırmak daha mantıklı olacaktır. 
+
+function handleClick(eventName) {
+    switch (eventName) {
+        case 'w':
+            let tom1 = new Audio('sounds/tom-1.mp3');
+            tom1.play();
+            break;
+        case 'a':
+            let tom2 = new Audio('sounds/tom-2.mp3');
+            tom2.play();
+            break;
+        case 's':
+            let tom3 = new Audio('sounds/tom-3.mp3');
+            tom3.play();
+            break;
+        case 'd':
+            let tom4 = new Audio('sounds/tom-4.mp3');
+            tom4.play();
+            break;
+        case 'j':
+            let snare = new Audio('sounds/snare.mp3');
+            snare.play();
+            break;
+        case 'k':
+            let crash = new Audio('sounds/crash.mp3');
+            crash.play();
+            break;
+        case 'l':
+            let kickBass = new Audio('sounds/kick-bass.mp3');
+            kickBass.play();
+            break;
+        default:
+            break;
+    }
+
+}
+
+
+//***********************************************/
 
 
 /// ! JS'te bir obje oluşturmak için 3 farklı yöntem vardır.
